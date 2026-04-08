@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "../Components/RootLayout/RootLayout";
 import HomePage from "../Pages/HomePage";
 import ListedBooksPage from "../Pages/ListedBooksPage";
+import PagesToReadBooks from "../Pages/PagesToReadBooks";
 import NotFound from "../Pages/NotFound";
+import RootLayout from "../Components/RootLayout/RootLayout";
 
 
 const routes = createBrowserRouter([
@@ -19,7 +20,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: "pagesToReadBooks",
-                element: <HomePage />
+                element: <PagesToReadBooks />
             },
         ]
     },
