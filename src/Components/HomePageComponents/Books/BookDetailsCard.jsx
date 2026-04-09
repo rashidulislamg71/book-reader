@@ -1,7 +1,14 @@
 import React from 'react'
 import img from "../../../assets/quran.png"
+import { useLoaderData, useParams } from 'react-router-dom';
 
 function BookDetailsCard() {
+    const { bookId } = useParams();
+    const books = useLoaderData();
+
+    const expectedBook = books.find(data => data.bookId == bookId);
+    console.log(expectedBook)
+
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 gap-10 px-4 py-10 md:p-16'>
 
@@ -9,8 +16,8 @@ function BookDetailsCard() {
             <div className='bg-gray-200 rounded-2xl flex justify-center items-center p-6'>
                 <img
                     className='max-h-[400px] object-contain'
-                    src={img}
-                    alt="The Holy Quran"
+                    src={expectedBook.image}
+                    alt={expectedBook.bookName}
                 />
             </div>
 
@@ -20,44 +27,47 @@ function BookDetailsCard() {
                 {/* Title & Author */}
                 <div>
                     <h1 className='text-2xl md:text-3xl font-bold'>
-                        The Holy Quran
+                        {expectedBook.bookName}
                     </h1>
-                    <p className='mt-3'>By: Allah</p>
+                    <p className='mt-3'>By: {expectedBook.author} </p>
                 </div>
 
                 {/* Category */}
                 <p className='border-t border-b py-3 border-gray-300'>
-                    Religious Book
+                    {expectedBook.category}
                 </p>
 
                 {/* Review */}
                 <p>
-                    <b>Review:</b> The Quran is the holy book of Islam. It provides complete guidance for human life, including moral, spiritual, and social aspects.
+                    <b>Review:</b> {expectedBook.review}
                 </p>
                 {/* tags  */}
                 <div className='flex items-center gap-4 border-b border-gray-300 pb-4'>
                     <p>Tag</p>
-                    <div className="badge badge-soft badge-success">Success</div>
-                    <div className="badge badge-soft badge-success">Success</div>
+                    {
+                        expectedBook.tags.map((tag, inx) => (
+                            <div key={inx} className="badge badge-soft badge-success">{tag} </div>
+                        ))
+                    }
                 </div>
                 {/* info  */}
                 <div className='w-[300px] '>
                     <div className='space-y-2'>
                         <div className='flex'>
                             <span className='text-gray-500 w-[170px]'>Number of Pages:</span>
-                            <span>604</span>
+                            <span>{expectedBook.totalPages} </span>
                         </div>
                         <div className='flex'>
                             <span className='text-gray-500 w-[170px]'>Publisher:</span>
-                            <span>Islamic Foundation</span>
+                            <span>{expectedBook.publisher}</span>
                         </div>
                         <div className='flex'>
                             <span className='text-gray-500 w-[170px]'>Publish of Year:</span>
-                            <span>2024</span>
+                            <span>{expectedBook.yearOfPublishing} </span>
                         </div>
                         <div className='flex'>
                             <span className='text-gray-500 w-[170px]'>Rating:</span>
-                            <span>5.0</span>
+                            <span>{expectedBook.rating}</span>
                         </div>
                     </div>
                 </div>

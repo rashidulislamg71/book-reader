@@ -1,16 +1,13 @@
 import React, { use } from 'react'
 import img from "../../../assets/quran.png"
 import { FiStar } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 function BookCard({ book }) {
-
-
-    const { bookName, author, image, rating, category, tags } = book
-
-    console.log(bookName)
+    const {bookId, bookName, author, image, rating, category, tags } = book
 
     return (
-        <div className=' '>
+        <Link to={`/bookDetails/${bookId}`}>
             <div className='group cursor-pointer hover:shadow-xl duration-300 transition-all w-80 h-100 p-4 border border-gray-200 rounded-2xl flex flex-col gap-3  justify-between'>
                 <div className='bg-gray-100 h-[60%] w-full overflow-hidden rounded-2xl flex justify-center items-center'>
                     <div className='w-[50%] flex justify-center'>
@@ -42,7 +39,8 @@ function BookCard({ book }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
+
     )
 }
 
