@@ -4,6 +4,7 @@ import ListedBooksPage from "../Pages/ListedBooksPage";
 import PagesToReadBooks from "../Pages/PagesToReadBooks";
 import NotFound from "../Pages/NotFound";
 import RootLayout from "../Components/RootLayout/RootLayout";
+import BookDetailsCard from "../Components/HomePageComponents/Books/BookDetailsCard";
 
 
 const routes = createBrowserRouter([
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
                 path: "pagesToReadBooks",
                 element: <PagesToReadBooks />
             },
+            {
+                path:"bookDetails/:bookId",
+                element: <BookDetailsCard />
+            }
         ]
     },
     {
