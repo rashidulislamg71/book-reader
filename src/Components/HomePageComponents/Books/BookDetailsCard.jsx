@@ -9,7 +9,7 @@ function BookDetailsCard() {
 
     const expectedBook = books.find(data => data.bookId == bookId);
 
-    const {handleMarkAsBook} = useContext(DataContext);
+    const {handleMarkAsBook, handleAddToWishList} = useContext(DataContext);
   
 
     return (
@@ -78,7 +78,7 @@ function BookDetailsCard() {
                 {/* button  */}
                 <div className='flex items-center gap-3 mt-3'>
                     <button onClick={()=>handleMarkAsBook(expectedBook)} className='py-1 px-3 border rounded cursor-pointer hover:bg-green-700 hover:text-white transition-all duration-300'>Mark As Read</button>
-                    <button className='py-1 px-3 border rounded cursor-pointer hover:bg-green-700 transition-all duration-300 text-white bg-green-500'>Wishlist</button>
+                    <button onClick={()=> handleAddToWishList(expectedBook)} className='py-1 px-3 border rounded cursor-pointer hover:bg-green-700 transition-all duration-300 text-white bg-green-500'>Wishlist</button>
                 </div>
             </div>
         </div>

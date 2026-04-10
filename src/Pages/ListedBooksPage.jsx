@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { DataContext } from '../Context/Context'
 
 function ListedBooksPage() {
+  const {readedBooks} = useContext(DataContext);
 
 
   
