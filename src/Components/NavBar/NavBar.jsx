@@ -47,7 +47,7 @@ function NavBar() {
                 </nav>
             </div>
             {/* sign in & sign up btn  */}
-            <div className='flex gap-5'>
+            <div className='flex gap-2 md:gap-5'>
                 <button className='btn text-white bg-blue-500'><Link>Sign In</Link></button>
                 <button className='btn bg-green-400 text-white'><Link>Sign Up</Link></button>
             </div>

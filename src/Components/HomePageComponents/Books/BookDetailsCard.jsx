@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import img from "../../../assets/quran.png"
 import { useLoaderData, useParams } from 'react-router-dom';
+import { DataContext } from '../../../Context/Context';
 
 function BookDetailsCard() {
     const { bookId } = useParams();
     const books = useLoaderData();
 
     const expectedBook = books.find(data => data.bookId == bookId);
-    console.log(expectedBook)
+
+    const {handleMarkAsBook} = useContext(DataContext);
+  
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-10 px-4 py-10 md:p-16'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-10 px-4 py-10 md:p-16 md:mt-10'>
 
             {/* Image Section */}
-            <div className='bg-gray-200 rounded-2xl flex justify-center items-center p-6'>
+            <div className='bg-gray-200 md:max-h-[500px] rounded-2xl flex justify-center items-center p-6'>
                 <img
-                    className='max-h-[400px] object-contain'
+                    className='max-h-[260px] md:max-h-[400px] object-contain'
                     src={expectedBook.image}
                     alt={expectedBook.bookName}
                 />
@@ -74,7 +77,7 @@ function BookDetailsCard() {
 
                 {/* button  */}
                 <div className='flex items-center gap-3 mt-3'>
-                    <button className='py-1 px-3 border rounded cursor-pointer hover:bg-green-700 transition-all duration-300'>Read</button>
+                    <button onClick={()=>handleMarkAsBook(expectedBook)} className='py-1 px-3 border rounded cursor-pointer hover:bg-green-700 hover:text-white transition-all duration-300'>Mark As Read</button>
                     <button className='py-1 px-3 border rounded cursor-pointer hover:bg-green-700 transition-all duration-300 text-white bg-green-500'>Wishlist</button>
                 </div>
             </div>

@@ -1,12 +1,12 @@
 import React from 'react'
-import quran from "../../assets/quran.png"
+import heroImage from "../../assets/heroImg.png"
 
 function HeroSection() {
   return (
-    <div className='px-4 py-10 md:px-16'>
-      <div className="hero bg-gray-200 min-h-screen md:p-10 p-0 rounded-2xl">
+    <div className='px-4 py-0 md:py-10 md:px-16'>
+      <div className="hero md:bg-gray-200 min-h-screen md:p-10 p-0 rounded-2xl">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <img className='w-100 rounded-2xl ' src={quran} alt="quran" />
+          <img className='w-45 h-60 md:w-90 md:h-auto rounded-2xl ' src={heroImage} alt="heroImage" />
           <div>
             <h1 className="text-5xl font-bold">Box Office News!</h1>
             <p className="py-6">
