@@ -6,13 +6,30 @@ function ListedBooksPage() {
   const [toggleBtn, setToggleBtn] = useState("readList")
 
   const { readedBooks, wishList } = useContext(DataContext);
-  const activeList = toggleBtn === "readList" ? readedBooks : wishList;
+  const mapReadedBooks = readedBooks.map(book => book );
+  const mapWishList = wishList.map(book => book);
+  const activeList = toggleBtn === "readList" ? mapReadedBooks : mapWishList;
+
+  // const sortReadedBooks = [...readedBooks].sort((a, b) => {
 
   const btnStyle = `bg-none px-3 rounded-2xl text-black pb-1 `
   const btnActiveStyle = `bg-blue-600 px-3 rounded-2xl text-white pb-1 `
 
   return (
     <div className='px-4 py-10 md:p-16'>
+      {/* change popover-1 and --anchor-1 names. Use unique names for each dropdown */}
+      {/* For TSX uncomment the commented types below */}
+      <button className="btn" popoverTarget="popover-1" style={{ anchorName: "--anchor-1" } /* as React.CSSProperties */}>
+        Button
+      </button>
+
+      <ul className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
+        popover="auto" id="popover-1" style={{ positionAnchor: "--anchor-1" } /* as React.CSSProperties */}>
+        <li><a>Item 1</a></li>
+        <li><a>Item 2</a></li>
+      </ul>
+
+
       <div className=' rounded-2xl border w-fit m-auto'>
         <button onClick={() => setToggleBtn("readList")} className={`${toggleBtn === "readList" ? btnActiveStyle : btnStyle} cursor-pointer`}>Read List</button>
         <button onClick={() => setToggleBtn("wishList")} className={`${toggleBtn === "wishList" ? btnActiveStyle : btnStyle} cursor-pointer`} >Wish List</button>
@@ -21,7 +38,7 @@ function ListedBooksPage() {
       {/* Books List Container */}
       <div className='max-w-5xl mx-auto flex flex-col gap-6'>
         {activeList.length === 0 ? (
-          <div className="py-20 flex flex-col items-center text-gray-400 bg-white rounded-3xl border-2 border-dashed border-gray-100">
+          <div className="py-20 mt-10 flex flex-col items-center text-gray-400 bg-white rounded-3xl border-2 border-dashed border-gray-100">
             <FaFileSignature className='text-6xl mb-4 opacity-20' />
             <p className='text-lg font-medium'>No book in this list!</p>
           </div>

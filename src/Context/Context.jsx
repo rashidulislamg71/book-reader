@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+import { toast } from 'react-toastify';
 
 
 const DataContext = createContext();
@@ -11,23 +12,29 @@ function ContextProvider({ children }) {
 
     const handleMarkAsBook = (book) => {
         const isExistBook = readedBooks.find(data => data.bookId === book.bookId);
+        const isExistWishList = wishList.find(data => data.bookId === book.bookId);
         if (isExistBook) {
-            alert("This book is already readed!");
+            toast("This book is already readed!");
+        }
+        else if (isExistWishList) {
+
+            toast("Book is already in your WishList!");
         }
         else {
             setReadedBooks([...readedBooks, book]);
-            alert(`You successfully Added to Readed list ${book.bookName}.`)
+            toast(`You successfully Added to Readed list ${book.bookName}.`);
         }
     };
 
     const handleAddToWishList = (book) => {
         const isExistReadBookList = readedBooks.find(data => data.bookId === book.bookId);
-        if (isExistReadBookList) {
-            alert(`"${book.bookName}" already have Readed list!`)
+        const isExistWishList = wishList.find(data => data.bookId === book.bookId);
+        if (isExistReadBookList || isExistWishList) {
+            toast("Book is already in one of your lists!");
         }
         else {
             setWishList([...wishList, book]);
-            alert(`You successfully Added to WishList "${book.bookName}".`);
+            toast(`You successfully Added to WishList ${book.bookName}.`);
         }
     }
 

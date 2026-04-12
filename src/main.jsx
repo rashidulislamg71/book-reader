@@ -7,8 +7,10 @@ import ContextProvider from './Context/Context.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ToastContainer />
     <ContextProvider>
       <RouterProvider router={routes} />
     </ContextProvider>
+    <ToastContainer />
   </StrictMode>,
 )
