@@ -1,5 +1,8 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
+import { addToReadListLocalDB, getReadListLocalDB } from '../utils/LocalStorage';
+import { getWishListLocalDB } from '../utils/LocalStorage';
+import { addToWishListLocalDB } from '../utils/LocalStorage';
 
 
 const DataContext = createContext();
@@ -7,10 +10,13 @@ export { DataContext };
 
 
 function ContextProvider({ children }) {
-    const [readedBooks, setReadedBooks] = useState([]);
-    const [wishList, setWishList] = useState([]);
+    const [readedBooks, setReadedBooks] = useState(getReadListLocalDB());
+    const [wishList, setWishList] = useState(getWishListLocalDB());
+
 
     const handleMarkAsBook = (book) => {
+
+        addToReadListLocalDB(book);
         const isExistBook = readedBooks.find(data => data.bookId === book.bookId);
         const isExistWishList = wishList.find(data => data.bookId === book.bookId);
         if (isExistBook) {
@@ -27,6 +33,7 @@ function ContextProvider({ children }) {
     };
 
     const handleAddToWishList = (book) => {
+        addToWishListLocalDB(book);
         const isExistReadBookList = readedBooks.find(data => data.bookId === book.bookId);
         const isExistWishList = wishList.find(data => data.bookId === book.bookId);
         if (isExistReadBookList || isExistWishList) {
@@ -53,3 +60,5 @@ function ContextProvider({ children }) {
 }
 
 export default ContextProvider;
+
+
