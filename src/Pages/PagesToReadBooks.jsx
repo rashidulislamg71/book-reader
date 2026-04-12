@@ -2,7 +2,7 @@ import React from 'react'
 
 function PagesToReadBooks() {
   return (
-    <div>PagesToReadBooks</div>
+    <div className='min-h-[80vh] ' >PagesToReadBooks</div>
   )
 }
 
