@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { toast } from 'react-toastify';
 import { addToReadListLocalDB, getReadListLocalDB } from '../utils/LocalStorage';
 import { getWishListLocalDB } from '../utils/LocalStorage';
@@ -15,8 +15,6 @@ function ContextProvider({ children }) {
 
 
     const handleMarkAsBook = (book) => {
-
-        addToReadListLocalDB(book);
         const isExistBook = readedBooks.find(data => data.bookId === book.bookId);
         const isExistWishList = wishList.find(data => data.bookId === book.bookId);
         if (isExistBook) {
@@ -30,10 +28,10 @@ function ContextProvider({ children }) {
             setReadedBooks([...readedBooks, book]);
             toast(`You successfully Added to Readed list ${book.bookName}.`);
         }
+        addToReadListLocalDB(book);
     };
 
     const handleAddToWishList = (book) => {
-        addToWishListLocalDB(book);
         const isExistReadBookList = readedBooks.find(data => data.bookId === book.bookId);
         const isExistWishList = wishList.find(data => data.bookId === book.bookId);
         if (isExistReadBookList || isExistWishList) {
@@ -43,6 +41,7 @@ function ContextProvider({ children }) {
             setWishList([...wishList, book]);
             toast(`You successfully Added to WishList ${book.bookName}.`);
         }
+        addToWishListLocalDB(book);
     }
 
     const data = {
